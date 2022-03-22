@@ -1,5 +1,5 @@
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import task.Task;
 import taskList.TaskList;
 
@@ -7,7 +7,7 @@ public class App {
     public static void main(String args[]){
         TaskList taskList= new TaskList();
 
-        LocalDate date = LocalDate.now();
+        LocalDateTime date = LocalDateTime.now().plusHours(10);
         Task newTask= Task.buildTask("This is a Task", date, false);
         taskList.addTask(newTask);
         Task newTask2= Task.buildTask("taskString", date, false);
@@ -26,6 +26,7 @@ public class App {
             System.out.println(taskList.listSize());
             taskList.printOutTasks();
         }   
+        System.out.println(LocalDateTime.now());
         
     }
 }

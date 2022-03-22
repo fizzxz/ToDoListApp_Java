@@ -1,10 +1,10 @@
 package task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Task {
     String taskStr;
-    LocalDate dueDateLocalDate;
+    LocalDateTime dueDateLDTime;
     // String reminderStr;
     // String repeatableStr;
     // String categoryStr;
@@ -14,8 +14,8 @@ public class Task {
         return taskStr;
     }
 
-    public LocalDate getDueDateString() {
-        return dueDateLocalDate;
+    public LocalDateTime getDueDateString() {
+        return dueDateLDTime;
     }
 
     public boolean getStatusBoolean() {
@@ -26,15 +26,21 @@ public class Task {
         this.taskStr = taskString;
     }
 
-    public void setDueDate(LocalDate dueDateString) {
-        this.dueDateLocalDate = dueDateString;
+    public void setDueDate(LocalDateTime dueDateLDTimeInputVal) {
+        //date and time can be set any time after 12am for the devices current date
+        if(dueDateLDTimeInputVal.isAfter(LocalDateTime.now().withHour(0).withMinute(0))){
+            this.dueDateLDTime = dueDateLDTimeInputVal;
+        }
+        else {
+            throw new Error("set due Date and Time must be after devices current time.");
+        }
     }
 
     public void setStatus(boolean statusBoolean) {
         this.statusBool = statusBoolean;
     }
 
-    public static Task buildTask(String taskString, LocalDate dueDate, boolean statusBool) {
+    public static Task buildTask(String taskString, LocalDateTime dueDate, boolean statusBool) {
         Task task = new Task();
         task.setTask(taskString);
         task.setDueDate(dueDate);
@@ -43,6 +49,7 @@ public class Task {
     }
 
     public String toString() {
-        return "Task name: "+getTaskString() + ", Task Date: " + getDueDateString()+", Task Completion Status:"+getStatusBoolean();
+        return "Task name: "+getTaskString() + ", Task Date: " + getDueDateString() 
+        +", Task Completion Status:"+getStatusBoolean();
     }
 }
