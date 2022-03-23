@@ -36,9 +36,31 @@ public class TaskList {
             System.out.println("Task could not be found with"
             + " provided string argument:" + taskString);
         }
-        return null;
-        
-         
+        return null;      
+    }
+
+    public TaskList findMultipleTasks(String taskString) {
+        TaskList tempTaskList=new TaskList();
+        try { 
+            for(Task taskVal:toDoList){
+                    if(taskVal.getTaskString().equals(taskString)){
+                        tempTaskList.addTask(taskVal);
+                    }
+            }
+            if(tempTaskList.listSize()!=0){
+                return tempTaskList;
+            }else{
+                new RuntimeErrorException(null,
+                "Invalid Task Name");
+                throw new NullPointerException();
+         }
+
+            
+        } catch (Exception e) {
+            System.out.println("Task could not be found with"
+            + " provided string argument:" + taskString);
+        }
+        return null;      
     }
 
     public void removeTask(String taskString) {

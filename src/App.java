@@ -10,23 +10,16 @@ public class App {
         LocalDateTime date = LocalDateTime.now().plusHours(10);
         Task newTask= Task.buildTask("This is a Task", date, false);
         taskList.addTask(newTask);
-        Task newTask2= Task.buildTask("taskString", date, false);
-        taskList.addTask(newTask2);
-        Task newTask3= Task.buildTask("taskString", date, false);
-        taskList.addTask(newTask3);
-        Task newTask4= Task.buildTask("taskString", date, false);
-        taskList.addTask(newTask4);
+     
 
         if(taskList.findTask("taskString")==null){
             Task taskNotFound=Task.buildTask("", date, false);
             taskList.addTask(taskNotFound);
-
         }else{
             System.out.println(taskList.findTask("taskString").toString());
             System.out.println(taskList.listSize());
             taskList.printOutTasks();
         }   
-        System.out.println(LocalDateTime.now());
-        
+             
     }
 }
